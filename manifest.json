@@ -1,0 +1,23 @@
+{
+  "id": "./",
+  "name": "SpectroScope",
+  "short_name": "SpectroScope",
+  "description": "An in-browser audio spectrum analyzer with embedded cover-art extraction.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0f1115",
+  "theme_color": "#0f1115",
+  "dir": "ltr",
+  "lang": "en",
+  "categories": ["utilities", "music", "audio"],
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

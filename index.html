@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SpectroScope</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon.svg">
+<meta name="theme-color" content="#07080c">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="stylesheet" href="styles.css">
+<script src="https://cdn.jsdelivr.net/npm/jsmediatags@3.9.7/dist/jsmediatags.min.js" defer></script>
+</head>
+<body>
+<div id="ambient"><i></i><i></i><i></i></div>
+<audio id="audio" preload="metadata"></audio>
+<input type="file" id="file-input" accept="audio/*" multiple hidden>
+
+<main>
+  <!-- IMPORT -->
+  <section id="tab-import" class="tab on">
+    <header class="head"><div><h1>Library</h1><p id="lib-count">No files yet</p></div>
+      <div class="acts"><button class="pill" id="add-btn">＋ Add</button><button class="pill ghost" id="clear-btn" hidden>Clear</button></div></header>
+    <label id="drop" class="card" for="file-input">
+      <svg viewBox="0 0 24 24"><path d="M12 15V4m0 0L8 8m4-4l4 4M5 15v4h14v-4"/></svg>
+      <b>Drop audio files here</b><span>or tap to choose · MP3 FLAC M4A OGG OPUS WAV · stays on your device</span>
+    </label>
+    <div id="list"></div>
+  </section>
+
+  <!-- MEDIA INFO -->
+  <section id="tab-info" class="tab">
+    <header class="head"><div><h1 id="i-title">Media Info</h1><p id="i-sub">Select a track from Library</p></div>
+      <div id="badges"></div></header>
+    <div class="card" id="spec-card">
+      <div id="spec-wrap">
+        <div id="y-axis"></div>
+        <div id="spec-box"><canvas id="spec"></canvas>
+          <div id="ov"><div id="ov-t">Waiting…</div><div id="ov-bar"><i id="ov-fill"></i></div></div></div>
+      </div>
+      <div id="x-axis"></div>
+    </div>
+    <div class="seg" id="seg"><button data-m="general" class="on">General</button><button data-m="audio">Audio</button><button data-m="image">Image</button></div>
+    <div class="card"><pre id="m-general"></pre><pre id="m-audio" hidden></pre><pre id="m-image" hidden></pre></div>
+  </section>
+
+  <!-- PLAYER -->
+  <section id="tab-player" class="tab">
+    <div id="cover"><img id="art" alt=""><svg id="note" viewBox="0 0 24 24"><path d="M9 18V6l11-2v12M9 18a3 3 0 11-6 0 3 3 0 016 0zm11-2a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div>
+    <div id="meta"><h2 id="p-title">Nothing playing</h2><p id="p-artist">Import a file to begin</p></div>
+    <div id="seek"><input type="range" id="bar" min="0" max="1000" value="0"><div><span id="t-cur">0:00</span><span id="t-rem">-0:00</span></div></div>
+    <div id="ctl">
+      <button id="prev" aria-label="Previous"><svg viewBox="0 0 24 24"><path d="M6 5v14M19 5v14L9 12z"/></svg></button>
+      <button id="play" aria-label="Play"><svg id="i-play" viewBox="0 0 24 24"><path d="M8 5l12 7-12 7z"/></svg><svg id="i-pause" viewBox="0 0 24 24" hidden><path d="M8 5v14M16 5v14"/></svg></button>
+      <button id="next" aria-label="Next"><svg viewBox="0 0 24 24"><path d="M18 5v14M5 5v14l10-7z"/></svg></button>
+    </div>
+    <div id="vol"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/></svg><input type="range" id="volume" min="0" max="1" step="0.01" value="1"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9zM16 8a5 5 0 010 8M19 5a9 9 0 010 14"/></svg></div>
+  </section>
+</main>
+
+<div id="dock">
+  <div id="dock-glass"></div>
+  <div id="bubble"><div id="lens"></div></div>
+  <div id="btns"></div>
+</div>
+<div id="toast"></div>
+
+<script src="parsers.js"></script>
+<script src="glass.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
